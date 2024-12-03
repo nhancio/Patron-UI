@@ -7,11 +7,14 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Tracker from './pages/Tracker';
 import Profile from './pages/Profile';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import ResumeBuilder from './pages/ResumeBuilder';
 import ProfileOptimization from './pages/ProfileOptimization';
 import JobAutomation from './pages/JobAutomation';
 import ReferralAutomation from './pages/ReferralAutomation';
 import Analytics from './pages/Analytics';
+
 
 export default function App() {
   useEffect(() => {
@@ -35,6 +38,8 @@ export default function App() {
             <Route path="/job-automation" element={<JobAutomation />} />
             <Route path="/referral-automation" element={<ReferralAutomation />} />
             <Route path="/analytics" element={<Analytics />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
           </Routes>
         </div>
         <Footer />
