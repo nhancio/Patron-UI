@@ -27,6 +27,12 @@ export default function Navbar() {
               <Link to="/" className={`${isActive('/')} transition-colors duration-200 font-medium`}>
                 Home
               </Link>
+              <Link 
+                to="/blog" 
+                className="py-4 px-2 text-gray-500 hover:text-blue-500 transition duration-300"
+              >
+                Blog
+              </Link>
               <Link to="/tracker" className={`${isActive('/tracker')} transition-colors duration-200 font-medium`}>
                 Tracker
               </Link>

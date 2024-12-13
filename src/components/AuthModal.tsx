@@ -4,7 +4,8 @@ import { auth } from '../config/firebase';
 import { 
   signInWithPopup, 
   signInWithRedirect, 
-  GoogleAuthProvider 
+  GoogleAuthProvider,
+  OAuthProvider 
 } from 'firebase/auth';
 
 interface AuthModalProps {
@@ -63,8 +64,53 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   };
 
-  const handleLinkedInLogin = () => {
-    setError('LinkedIn login will be available soon. Please use Google authentication for now.');
+  const handleLinkedInLogin = async () => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      const provider = new OAuthProvider('oidc.linkedin');
+      // Add these scopes for LinkedIn
+      provider.addScope('openid');
+      provider.addScope('profile');
+      provider.addScope('email');
+      provider.setCustomParameters({
+        'prompt': 'consent'
+      });
+      
+      try {
+        // First try popup
+        const result = await signInWithPopup(auth, provider);
+        if (result.user) {
+          onClose();
+        }
+      } catch (popupError: any) {
+        if (popupError.code === 'auth/popup-blocked') {
+          // If popup is blocked, fallback to redirect
+          await signInWithRedirect(auth, provider);
+        } else {
+          throw popupError;
+        }
+      }
+    } catch (error: any) {
+      console.error('LinkedIn login error:', error);
+      let errorMessage = 'Failed to sign in with LinkedIn. Please try again.';
+      
+      switch (error.code) {
+        case 'auth/cancelled-popup-request':
+        case 'auth/popup-closed-by-user':
+          errorMessage = 'Sign in was cancelled. Please try again.';
+          break;
+        case 'auth/unauthorized-domain':
+          errorMessage = 'This domain is not authorized. Please contact support.';
+          break;
+        default:
+          errorMessage = error.message || 'An error occurred during sign in.';
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleNaukriLogin = () => {

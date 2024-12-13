@@ -5,17 +5,17 @@ export default function Footer() {
   const socialLinks = [
     {
       icon: Instagram,
-      url: 'https://instagram.com/patronai',
+      url: 'https://www.instagram.com/patron.you/',
       color: 'hover:text-pink-600',
     },
     {
       icon: Linkedin,
-      url: 'https://linkedin.com/company/patronai',
+      url: 'https://www.linkedin.com/company/patronyou/',
       color: 'hover:text-blue-600',
     },
     {
       icon: Twitter,
-      url: 'https://twitter.com/patronai',
+      url: 'https://x.com/patron_you',
       color: 'hover:text-sky-500',
     },
   ];
