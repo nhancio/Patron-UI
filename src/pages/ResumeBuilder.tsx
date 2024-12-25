@@ -53,13 +53,13 @@ export default function ResumeBuilder() {
           <span className="text-lg font-medium">Upload Resume</span>
         </button>
 
-        <button
+        {/* <button
           onClick={() => setShowTextEditor(true)}
           className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <FileText className="w-12 h-12 text-green-600 mb-4" />
           <span className="text-lg font-medium">Paste Text</span>
-        </button>
+        </button> */}
 
         <button
           onClick={handleLinkedInFetch}

@@ -1,50 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 interface BlogPost {
   id: number;
-  title: {
-    rendered: string;
-  };
-  excerpt: {
-    rendered: string;
-  };
+  title: string;
+  image: string;
+  link: string;
 }
 
+const blogPosts: BlogPost[] = [
+  {
+    id: 1,
+    title: "Getting Started with AI Development",
+    image: "/blog-images/ai-dev.jpg", 
+    link: "https://patronai.wordpress.com/article-1"
+  },
+  {
+    id: 2,
+    title: "Understanding Machine Learning Basics",
+    image: "/blog-images/ml-basics.jpg",
+    link: "https://patronai.wordpress.com/article-2"
+  },
+  // Add more posts as needed
+];
+
 export default function Blog() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch('https://patronai.wordpress.com/wp-json/wp/v2/posts');
-        const data = await response.json();
-        setPosts(data);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Blog Posts</h1>
-      <div className="grid gap-6">
-        {posts.map((post) => (
-          <Link key={post.id} to={`/blog/${post.id}`} 
-                className="block p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow">
-            <h2 className="text-xl font-semibold mb-2"
-                dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-            <div className="text-gray-600"
-                 dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
-          </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {blogPosts.map((post) => (
+          <a 
+            key={post.id} 
+            href={post.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block hover:transform hover:scale-105 transition-transform duration-200"
+          >
+            <div className="bg-white rounded-lg shadow overflow-hidden">
+              <img 
+                src={post.image} 
+                alt={post.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+                <span className="text-blue-600">Read full article →</span>
+              </div>
+            </div>
+          </a>
         ))}
       </div>
     </div>

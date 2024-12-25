@@ -16,7 +16,19 @@ export default function JobAutomation() {
       
       <div className="bg-white rounded-lg shadow-lg p-6">
         <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); handleSearch(); }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-blue-50 p-4 rounded-lg mb-6">
+              <p className="text-blue-800">Please enable this extension to start your job automation journey.</p>
+              <a
+                href="https://chromewebstore.google.com/detail/autoapply-ai-free/lljlidmjadaibchdnjlchinbdemkonlm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center mt-2 text-blue-600 hover:text-blue-800"
+              >
+                Get Extension
+                <ExternalLink className="w-4 h-4 ml-1" />
+              </a>
+            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">            
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 <div className="flex items-center">
@@ -48,19 +60,6 @@ export default function JobAutomation() {
                 placeholder="e.g., San Francisco"
               />
             </div>
-          </div>
-
-          <div className="bg-blue-50 p-4 rounded-lg mb-6">
-            <p className="text-blue-800">Please enable this extension to start your job automation journey.</p>
-            <a
-              href="https://chromewebstore.google.com/detail/autoapply-ai-free/lljlidmjadaibchdnjlchinbdemkonlm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center mt-2 text-blue-600 hover:text-blue-800"
-            >
-              Get Extension
-              <ExternalLink className="w-4 h-4 ml-1" />
-            </a>
           </div>
 
           <div className="flex justify-end space-x-4">

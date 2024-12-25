@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Briefcase, Mail } from 'lucide-react';
+import { Briefcase, Mail, ListTodo } from 'lucide-react';
 import { getAnalytics } from '../services/analytics';
+import { Link } from 'react-router-dom';
 
 export default function Analytics() {
   const [stats, setStats] = useState({ jobsApplied: 0, referralsSent: 0 });
@@ -25,8 +26,8 @@ export default function Analytics() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Analytics & Insights</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
@@ -37,7 +38,7 @@ export default function Analytics() {
           </div>
           <p className="text-gray-600">Total job applications submitted</p>
         </div>
-
+  
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
@@ -48,6 +49,19 @@ export default function Analytics() {
           </div>
           <p className="text-gray-600">Total referral emails sent</p>
         </div>
+  
+        <Link 
+        to="/tracker"
+        className="bg-white rounded-lg shadow-lg p-6 hover:bg-gray-50 transition-colors duration-200"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center">
+            <ListTodo className="w-8 h-8 text-purple-600" /> {/* Changed icon and color */}
+            <h2 className="text-xl font-semibold ml-2">Application Tracker</h2>
+          </div>
+        </div>
+        <p className="text-gray-600">Track all your job applications</p>
+      </Link>
       </div>
     </div>
   );
