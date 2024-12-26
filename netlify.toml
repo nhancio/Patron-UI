@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  framework = "vite"
+
+[[plugins]]
+  package = "@netlify/plugin-vite"
