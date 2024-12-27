@@ -1,5 +1,4 @@
-import { db } from '../config/firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+// import { db, collection, query, where, getDocs } from 'firebase/firestore'; // Comment out if not used
 
 export const getAnalytics = async (userId: string) => {
   /* 

@@ -1,56 +1,51 @@
 import React from 'react';
-import { Linkedin, Mail } from 'lucide-react';
+import { Users, Linkedin, Briefcase } from 'lucide-react';
 
-export default function ProfileOptimization() {
-  const handleLinkedInOptimize = () => {
-    window.open('https://www.linkedin.com/in/edit', '_blank');
-  };
-
-  const handleNaukriOptimize = () => {
-    window.open('https://www.naukri.com/mnjuser/profile', '_blank');
-  };
+function ProfileOptimization() {
+  const profiles = [
+    {
+      title: "LinkedIn Profile Optimization",
+      description: "Enhance your LinkedIn profile with AI-powered recommendations",
+      icon: <Linkedin className="w-8 h-8 text-blue-600" />,
+      url: "https://www.linkedin.com"
+    },
+    {
+      title: "Naukri Profile Optimization",
+      description: "Optimize your Naukri profile for better visibility",
+      icon: <Briefcase className="w-8 h-8 text-blue-600" />,
+      url: "https://www.naukri.com"
+    }
+  ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Profile Optimization</h1>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="flex items-center mb-8">
+        <Users className="w-8 h-8 text-blue-500 mr-3" />
+        <h1 className="text-3xl font-bold text-gray-900">Profile Optimization</h1>
+      </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center">
-                <Linkedin className="w-8 h-8 text-[#0077B5]" />
-                <h2 className="text-xl font-semibold ml-2">LinkedIn</h2>
-              </div>
-              <div className="text-2xl font-bold">85%</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {profiles.map((profile, index) => (
+          <a 
+            key={index}
+            href={profile.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+          >
+            <div className="flex items-center mb-4">
+              {profile.icon}
+              <h2 className="text-xl font-semibold ml-3">{profile.title}</h2>
             </div>
-            <button
-              onClick={handleLinkedInOptimize}
-              className="w-full bg-[#0077B5] text-white py-2 rounded-lg hover:bg-[#006399] transition-colors"
-            >
-              Optimize LinkedIn Profile
-            </button>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center">
-                <Mail className="w-8 h-8 text-[#FF7555]" />
-                <h2 className="text-xl font-semibold ml-2">Naukri</h2>
-              </div>
-              <div className="text-2xl font-bold">72%</div>
+            <p className="text-gray-600">{profile.description}</p>
+            <div className="mt-4 text-sm text-blue-600">
+              Visit site ↗
             </div>
-            <button
-              onClick={handleNaukriOptimize}
-              className="w-full bg-[#FF7555] text-white py-2 rounded-lg hover:bg-[#FF6B4A] transition-colors"
-            >
-              Optimize Naukri Profile
-            </button>
-          </div>
-        </div>
+          </a>
+        ))}
       </div>
     </div>
   );
 }
+
+export default ProfileOptimization;
