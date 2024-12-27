@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
-import { Download, FileText, Plus, Trash2 } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 interface ResumeData {
   personalInfo: {
@@ -10,19 +9,12 @@ interface ResumeData {
     location: string;
     linkedin: string;
   };
-  education: Array<{
-    degree: string;
-    school: string;
-    year: string;
-    gpa: string;
-  }>;
   experience: Array<{
     title: string;
     company: string;
     duration: string;
     points: string[];
   }>;
-  skills: string[];
   projects: Array<{
     name: string;
     description: string;
@@ -39,19 +31,12 @@ function ResumeBuilder() {
       location: '',
       linkedin: '',
     },
-    education: [{
-      degree: '',
-      school: '',
-      year: '',
-      gpa: '',
-    }],
     experience: [{
       title: '',
       company: '',
       duration: '',
       points: [''],
     }],
-    skills: [''],
     projects: [{
       name: '',
       description: '',
@@ -290,14 +275,5 @@ function ResumeBuilder() {
     </div>
   );
 }
-
-// PDF Document Component
-const ResumePDF = ({ data }: { data: ResumeData }) => (
-  <Document>
-    <Page size="A4">
-      {/* PDF content will go here */}
-    </Page>
-  </Document>
-);
 
 export default ResumeBuilder;
