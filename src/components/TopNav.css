@@ -1,0 +1,5 @@
+.nav-links.open {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+} 

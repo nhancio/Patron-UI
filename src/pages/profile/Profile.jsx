@@ -1,18 +1,33 @@
+import React from 'react';
+import ProfileRoadmap from '../../components/roadmap/ProfileRoadmap';
+import './Profile.css';
+
 const Profile = () => {
-    // Example user progress data
-    const userProgress = {
-      profile: { date: '2024-03-15' },
-      resume: { date: '2024-03-16' },
-      linkedin: { date: '2024-03-17' },
-      naukri: { date: '2024-03-18' },
-      applications: { date: '2024-03-20' },
-      interviews: { date: '2024-03-25' },
-      offers: null // Not completed yet
-    };
-  
-    return (
-      <div>
-        <ProfileRoadmap userProgress={userProgress} />
+  return (
+    <div className="profile-container">
+      <div className="profile-header">
+        <div className="profile-info">
+          <h2>John Doe</h2>
+          <p>john.doe@example.com</p>
+        </div>
+        <button className="sign-out-button">Sign Out</button>
       </div>
-    );
-  };
+
+      <div className="connected-accounts">
+        <h3>Connected Accounts</h3>
+        <ul>
+          <li>LinkedIn</li>
+          <li>Naukri</li>
+          <li>Google</li>
+        </ul>
+        <button className="download-resume-button">Download Latest Resume</button>
+      </div>
+
+      <div className="roadmap-section">
+        <ProfileRoadmap />
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
